@@ -13,7 +13,6 @@ class TestModel:
     def assign_red_to_card(self):
         red_card_index = random.choice([0,1,2])
         self.cards[red_card_index] = True
-        print(self.cards)
 
     def reset_game(self):
         self.cards = [False, False, False]
@@ -30,7 +29,7 @@ class TestController:
         return self.model.cards
 
     def check_game_over(self):
-        if self.model.revealed_cards < 4:
+        if self.model.revealed_cards < 3:
             self.model.game_over = False
         else:
             self.model.game_over = True

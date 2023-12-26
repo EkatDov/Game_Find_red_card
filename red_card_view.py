@@ -70,7 +70,7 @@ class TestGameView():
         instruction_surface = instructions_font.render(self.current_instruction, True, BLACK)
         instruction_rect = instruction_surface.get_rect(topleft=(self.screen.get_width() // 3, (self.screen.get_height() // 4) * 3))
         self.screen.blit(instruction_surface, instruction_rect)
-
+        #draw hidden cards
         self.clear_card_colours()
 
 
@@ -82,15 +82,16 @@ class TestGameView():
 
     def distribute_colours(self):
         red = self.controller.get_card_colour()
-        self.card_two["colour"] = red[0]
-        self.card_one["colour"] = red[1]
+        self.card_one["colour"] = red[0]
+        self.card_two["colour"] = red[1]
         self.card_three["colour"] = red[2]
 
-    def reveal_card(self, card):
+    def reveal_card(self, card: dict):
         colour = TestGameView.get_colour(card["colour"])
         pygame.draw.rect(self.screen, colour, card["coordinates"])
         self.controller.model.revealed_cards += 1
         self.controller.check_game_over()
+
 
     @staticmethod
     def get_colour(red):
